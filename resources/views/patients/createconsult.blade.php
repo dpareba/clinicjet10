@@ -123,6 +123,12 @@ Add Consultation for Patient Visit
 							<!-- /.row -->
 							<div class="row">
 								<div class="col-md-6 col-xs-12">
+									{!! $chart->render() !!}
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6 col-xs-12">
 									<div class="form-group {{ $errors->has('patienthistory')?'has-error':''}}">
 										<label class="control-label" for="patienthistory">History of Presenting Complaints</label>
 										<div class="input-group">

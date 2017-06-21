@@ -14,6 +14,8 @@ use Session;
 use Carbon\Carbon;
 use Illuminate\Support\Str; //Added
 use App\State;
+use Charts;
+use App\Visit;
 
 class PatientController extends Controller
 {
@@ -196,7 +198,21 @@ class PatientController extends Controller
         $user = User::find($patient->created_by);
         //$pathologies = Pathology::all();
         $pathologies = Pathology::where('user_id','=','1')->orWhere('user_id','=',Auth::user()->id)->get();
-        return view('patients.createconsult')->withPatient($patient)->withUser($user)->withPathologies($pathologies);
+
+        $data = Visit::where('patient_id','=',$patient->id)->where('systolic','!=','')->where('diastolic','!=','')->get();
+
+        $chart = Charts::multi('areaspline','highcharts')
+                        ->height(300)
+                        ->colors(['#58355E','#7AE7C7'])
+                        ->title('Blood Pressure (mmHg)')
+                        ->elementLabel('mmHg')
+                        ->labels($data->pluck('created_at'))
+                        ->dataset('Systolic',$data->pluck('systolic'))
+                        ->dataset('Diastolic',$data->pluck('diastolic'))
+                        ->responsive(false)
+                        ;
+
+        return view('patients.createconsult')->withPatient($patient)->withUser($user)->withPathologies($pathologies)->withChart($chart);
     }
     /**
      * Display the specified resource.
