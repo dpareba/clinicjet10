@@ -9,7 +9,8 @@
         "laravel/framework": "5.3.*",
         "devdojo/chatter": "0.1.*",
         "intervention/image": "^2.3",
-        "niklasravnsborg/laravel-pdf": "^1.5"
+        "niklasravnsborg/laravel-pdf": "^1.5",
+        "consoletvs/charts": "4.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -26,7 +27,7 @@
             "App\\": "app/"
         }
     },
-    
+  
     "scripts": {
         "post-root-package-install": [
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\""

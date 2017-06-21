@@ -180,7 +180,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
-
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
         ],
 
     /*
@@ -231,6 +231,7 @@ return [
     'Image' => Intervention\Image\Facades\Image::class,
     'Carbon' => Carbon\Carbon::class,
     'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
+    'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
     ],
 
